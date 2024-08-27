@@ -7,14 +7,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SnakeNet_API.DAL;
 
-
-
 #nullable disable
 
 namespace SnakeNet_API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240823173111_InitialMigration")]
+    [Migration("20240827133902_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -72,6 +70,45 @@ namespace SnakeNet_API.Migrations
                     b.ToTable("Enclosures");
                 });
 
+            modelBuilder.Entity("SnakeNet_API.Models.Entities.EnclosureLight", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EnclosureId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("InUse")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LightingType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Manufacturer")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Side")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Wattage")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EnclosureId");
+
+                    b.ToTable("EnclosureLights");
+                });
+
             modelBuilder.Entity("SnakeNet_API.Models.Entities.EnclosureReading", b =>
                 {
                     b.Property<string>("Id")
@@ -101,7 +138,43 @@ namespace SnakeNet_API.Migrations
 
                     b.HasIndex("EnclosureId");
 
-                    b.ToTable("EnclosureReading");
+                    b.ToTable("EnclosureReadings");
+                });
+
+            modelBuilder.Entity("SnakeNet_API.Models.Entities.EnclosureSubstrate", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EnclosureId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("InUse")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Manufacturer")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SubstrateType")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Volume")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EnclosureId");
+
+                    b.ToTable("EnclosureSubstrates");
                 });
 
             modelBuilder.Entity("SnakeNet_API.Models.Entities.FeedingRecord", b =>
@@ -130,7 +203,7 @@ namespace SnakeNet_API.Migrations
 
                     b.HasIndex("SnakeId");
 
-                    b.ToTable("FeedingRecord");
+                    b.ToTable("FeedingRecords");
                 });
 
             modelBuilder.Entity("SnakeNet_API.Models.Entities.GrowthRecord", b =>
@@ -186,7 +259,29 @@ namespace SnakeNet_API.Migrations
                     b.Navigation("Snake");
                 });
 
+            modelBuilder.Entity("SnakeNet_API.Models.Entities.EnclosureLight", b =>
+                {
+                    b.HasOne("SnakeNet_API.Models.Entities.Enclosure", "Enclosure")
+                        .WithMany()
+                        .HasForeignKey("EnclosureId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Enclosure");
+                });
+
             modelBuilder.Entity("SnakeNet_API.Models.Entities.EnclosureReading", b =>
+                {
+                    b.HasOne("SnakeNet_API.Models.Entities.Enclosure", "Enclosure")
+                        .WithMany()
+                        .HasForeignKey("EnclosureId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Enclosure");
+                });
+
+            modelBuilder.Entity("SnakeNet_API.Models.Entities.EnclosureSubstrate", b =>
                 {
                     b.HasOne("SnakeNet_API.Models.Entities.Enclosure", "Enclosure")
                         .WithMany()

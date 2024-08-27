@@ -26,7 +26,32 @@ namespace SnakeNet_API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EnclosureReading",
+                name: "EnclosureLights",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LightingType = table.Column<int>(type: "int", nullable: false),
+                    Manufacturer = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Side = table.Column<int>(type: "int", nullable: false),
+                    Wattage = table.Column<int>(type: "int", nullable: false),
+                    AddedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    InUse = table.Column<bool>(type: "bit", nullable: false),
+                    EnclosureId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EnclosureLights", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EnclosureLights_Enclosures_EnclosureId",
+                        column: x => x.EnclosureId,
+                        principalTable: "Enclosures",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EnclosureReadings",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -39,9 +64,33 @@ namespace SnakeNet_API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EnclosureReading", x => x.Id);
+                    table.PrimaryKey("PK_EnclosureReadings", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_EnclosureReading_Enclosures_EnclosureId",
+                        name: "FK_EnclosureReadings_Enclosures_EnclosureId",
+                        column: x => x.EnclosureId,
+                        principalTable: "Enclosures",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EnclosureSubstrates",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SubstrateType = table.Column<int>(type: "int", nullable: false),
+                    Manufacturer = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Volume = table.Column<int>(type: "int", nullable: false),
+                    InUse = table.Column<bool>(type: "bit", nullable: false),
+                    AddedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EnclosureId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EnclosureSubstrates", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EnclosureSubstrates_Enclosures_EnclosureId",
                         column: x => x.EnclosureId,
                         principalTable: "Enclosures",
                         principalColumn: "Id",
@@ -89,7 +138,7 @@ namespace SnakeNet_API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "FeedingRecord",
+                name: "FeedingRecords",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -101,9 +150,9 @@ namespace SnakeNet_API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FeedingRecord", x => x.Id);
+                    table.PrimaryKey("PK_FeedingRecords", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_FeedingRecord_Snakes_SnakeId",
+                        name: "FK_FeedingRecords_Snakes_SnakeId",
                         column: x => x.SnakeId,
                         principalTable: "Snakes",
                         principalColumn: "Id",
@@ -137,13 +186,23 @@ namespace SnakeNet_API.Migrations
                 column: "SnakeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EnclosureReading_EnclosureId",
-                table: "EnclosureReading",
+                name: "IX_EnclosureLights_EnclosureId",
+                table: "EnclosureLights",
                 column: "EnclosureId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FeedingRecord_SnakeId",
-                table: "FeedingRecord",
+                name: "IX_EnclosureReadings_EnclosureId",
+                table: "EnclosureReadings",
+                column: "EnclosureId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EnclosureSubstrates_EnclosureId",
+                table: "EnclosureSubstrates",
+                column: "EnclosureId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FeedingRecords_SnakeId",
+                table: "FeedingRecords",
                 column: "SnakeId");
 
             migrationBuilder.CreateIndex(
@@ -159,10 +218,16 @@ namespace SnakeNet_API.Migrations
                 name: "Eliminations");
 
             migrationBuilder.DropTable(
-                name: "EnclosureReading");
+                name: "EnclosureLights");
 
             migrationBuilder.DropTable(
-                name: "FeedingRecord");
+                name: "EnclosureReadings");
+
+            migrationBuilder.DropTable(
+                name: "EnclosureSubstrates");
+
+            migrationBuilder.DropTable(
+                name: "FeedingRecords");
 
             migrationBuilder.DropTable(
                 name: "GrowthRecords");

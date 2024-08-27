@@ -3,10 +3,10 @@ using SnakeNet_API.Models.Entities;
 
 namespace SnakeNet_API.DAL
 {
-    /// <summary>
-    /// While obviously not needed for this project size and EF already have it built in, I wanted to try and implement a Unit of Work pattern and see how it goes
-    /// </summary>
-    public class UnitOfWork : IDisposable, IUnitOfWork
+	/// <summary>
+	/// While obviously not needed for this project size and EF already have it built in, I wanted to try and implement a Unit of Work pattern and see how it goes
+	/// </summary>
+	public class UnitOfWork : IDisposable, IUnitOfWork
 	{
 		private readonly AppDbContext _context;
 		private bool _disposed = false;
@@ -119,3 +119,4 @@ namespace SnakeNet_API.DAL
 			GC.SuppressFinalize(this);
 		}
 	}
+}
