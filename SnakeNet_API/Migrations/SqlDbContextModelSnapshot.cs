@@ -4,13 +4,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SnakeNet_API.DataAccess;
+using SnakeNet_API.DAL;
+
+
 
 #nullable disable
 
 namespace SnakeNet_API.Migrations
 {
-    [DbContext(typeof(DataAccess.AppDbContext))]
+    [DbContext(typeof(AppDbContext))]
     partial class SqlDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

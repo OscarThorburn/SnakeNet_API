@@ -5,13 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SnakeNet_API.DataAccess;
+using SnakeNet_API.DAL;
+
+
 
 #nullable disable
 
 namespace SnakeNet_API.Migrations
 {
-    [DbContext(typeof(DataAccess.AppDbContext))]
+    [DbContext(typeof(AppDbContext))]
     [Migration("20240823173111_InitialMigration")]
     partial class InitialMigration
     {
