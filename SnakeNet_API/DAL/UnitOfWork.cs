@@ -9,6 +9,7 @@ namespace SnakeNet_API.DAL
     public class UnitOfWork : IDisposable, IUnitOfWork
 	{
 		private readonly AppDbContext _context;
+		private bool _disposed = false;
 
 		private IGenericRepository<Snake> _snakeRepository;
 		private IGenericRepository<Enclosure> _enclosureRepository;
@@ -95,14 +96,10 @@ namespace SnakeNet_API.DAL
 			}
 		}
 
-		// Save changes asynchronously
 		public async Task<int> SaveAsync()
 		{
 			return await _context.SaveChangesAsync();
 		}
-
-		// Dispose pattern to clean up the context
-		private bool _disposed = false;
 
 		protected virtual void Dispose(bool disposing)
 		{
