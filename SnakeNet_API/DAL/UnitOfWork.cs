@@ -28,7 +28,7 @@ namespace SnakeNet_API.DAL
 		{
 			get
 			{
-				if (_snakeRepository == null)
+				if (_snakeRepository is null)
 				{
 					_snakeRepository = new GenericRepository<Snake>(_context);
 				}
@@ -40,7 +40,7 @@ namespace SnakeNet_API.DAL
 		{
 			get
 			{
-				if (_enclosureRepository == null)
+				if (_enclosureRepository is null)
 				{
 					_enclosureRepository = new GenericRepository<Enclosure>(_context);
 				}
@@ -52,7 +52,7 @@ namespace SnakeNet_API.DAL
 		{
 			get
 			{
-				if (_growthRecordRepository == null)
+				if (_growthRecordRepository is null)
 				{
 					_growthRecordRepository = new GenericRepository<GrowthRecord>(_context);
 				}
@@ -64,7 +64,7 @@ namespace SnakeNet_API.DAL
 		{
 			get
 			{
-				if (_eliminationRepository == null)
+				if (_eliminationRepository is null)
 				{
 					_eliminationRepository = new GenericRepository<Elimination>(_context);
 				}
@@ -76,7 +76,7 @@ namespace SnakeNet_API.DAL
 		{
 			get
 			{
-				if (_feedingRecordRepository == null)
+				if (_feedingRecordRepository is null)
 				{
 					_feedingRecordRepository = new GenericRepository<FeedingRecord>(_context);
 				}
@@ -88,7 +88,7 @@ namespace SnakeNet_API.DAL
 		{
 			get
 			{
-				if (_enclosureReadingRepository == null)
+				if (_enclosureReadingRepository is null)
 				{
 					_enclosureReadingRepository = new GenericRepository<EnclosureReading>(_context);
 				}

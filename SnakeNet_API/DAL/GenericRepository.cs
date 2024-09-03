@@ -23,7 +23,7 @@ namespace SnakeNet_API.DAL
 		{
 			IQueryable<TEntity> query = _dbSet;
 
-			if (filter != null)
+			if (filter is not null)
 			{
 				query = query.Where(filter);
 			}
@@ -34,7 +34,7 @@ namespace SnakeNet_API.DAL
 				query = query.Include(includeProperty);
 			}
 
-			if (orderBy != null)
+			if (orderBy is not null)
 			{
 				return await orderBy(query).ToListAsync();
 			}
@@ -57,7 +57,7 @@ namespace SnakeNet_API.DAL
 		public async virtual Task DeleteAsync(object id)
 		{
 			TEntity entityToDelete = await _dbSet.FindAsync(id);
-			if (entityToDelete != null)
+			if (entityToDelete is not null)
 			{
 				Delete(entityToDelete);
 			}
