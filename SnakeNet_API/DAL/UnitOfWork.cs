@@ -17,6 +17,8 @@ namespace SnakeNet_API.DAL
 		private IGenericRepository<Elimination> _eliminationRepository;
 		private IGenericRepository<FeedingRecord> _feedingRecordRepository;
 		private IGenericRepository<EnclosureReading> _enclosureReadingRepository;
+		private IGenericRepository<EnclosureLight> _enclosureLightRepository;
+		private IGenericRepository<EnclosureSubstrate> _enclosureSubstrateRepository;
 
 		public UnitOfWork(AppDbContext context)
 		{
@@ -93,6 +95,30 @@ namespace SnakeNet_API.DAL
 					_enclosureReadingRepository = new GenericRepository<EnclosureReading>(_context);
 				}
 				return _enclosureReadingRepository;
+			}
+		}
+
+		public IGenericRepository<EnclosureLight> EnclosureLightRepository
+		{
+			get
+			{
+				if (_enclosureLightRepository is null)
+				{
+					_enclosureLightRepository = new GenericRepository<EnclosureLight>(_context);
+				}
+				return _enclosureLightRepository;
+			}
+		}
+
+		public IGenericRepository<EnclosureSubstrate> EnclosureSubstrateRepository
+		{
+			get
+			{
+				if (_enclosureSubstrateRepository is null)
+				{
+					_enclosureSubstrateRepository = new GenericRepository<EnclosureSubstrate>(_context);
+				}
+				return _enclosureSubstrateRepository;
 			}
 		}
 
