@@ -3,8 +3,9 @@ using SnakeNet_API.Models.Entities;
 
 namespace SnakeNet_API.DAL
 {
+	// While obviously not needed for a project of this size and EF already have it built in, I wanted to try and implement a Unit of Work pattern and see how it goes
 	/// <summary>
-	/// While obviously not needed for this project size and EF already have it built in, I wanted to try and implement a Unit of Work pattern and see how it goes
+	/// One interface to rule them all repository interfaces
 	/// </summary>
 	public class UnitOfWork : IDisposable, IUnitOfWork
 	{
@@ -127,14 +128,11 @@ namespace SnakeNet_API.DAL
 			return await _context.SaveChangesAsync();
 		}
 
-		protected virtual void Dispose(bool disposing)
+		protected void Dispose(bool disposing)
 		{
-			if (!_disposed)
+			if (!_disposed && disposing)
 			{
-				if (disposing)
-				{
-					_context.Dispose();
-				}
+				_context.Dispose();
 			}
 			_disposed = true;
 		}

@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnakeNet_API", "SnakeNet_API\SnakeNet_API.csproj", "{F728E6F4-5623-4057-AF02-B83E03C89B7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnakeNet_API", "SnakeNet_API\SnakeNet_API.csproj", "{F728E6F4-5623-4057-AF02-B83E03C89B7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnakeNet_API.Test", "SnakeNet_API.Test\SnakeNet_API.Test.csproj", "{A4B86C9E-54FA-47D0-B8B9-95F54A6225D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{F728E6F4-5623-4057-AF02-B83E03C89B7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F728E6F4-5623-4057-AF02-B83E03C89B7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F728E6F4-5623-4057-AF02-B83E03C89B7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4B86C9E-54FA-47D0-B8B9-95F54A6225D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4B86C9E-54FA-47D0-B8B9-95F54A6225D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4B86C9E-54FA-47D0-B8B9-95F54A6225D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4B86C9E-54FA-47D0-B8B9-95F54A6225D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
