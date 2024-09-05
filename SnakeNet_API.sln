@@ -5,7 +5,7 @@ VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnakeNet_API", "SnakeNet_API\SnakeNet_API.csproj", "{F728E6F4-5623-4057-AF02-B83E03C89B7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnakeNet_API.Test", "SnakeNet_API.Test\SnakeNet_API.Test.csproj", "{A4B86C9E-54FA-47D0-B8B9-95F54A6225D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnakeNet_API.Tests", "SnakeNet_API.Tests\SnakeNet_API.Tests.csproj", "{28F63A31-54B0-4B83-A29A-9AB76E5EF2CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{F728E6F4-5623-4057-AF02-B83E03C89B7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F728E6F4-5623-4057-AF02-B83E03C89B7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F728E6F4-5623-4057-AF02-B83E03C89B7B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A4B86C9E-54FA-47D0-B8B9-95F54A6225D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A4B86C9E-54FA-47D0-B8B9-95F54A6225D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A4B86C9E-54FA-47D0-B8B9-95F54A6225D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A4B86C9E-54FA-47D0-B8B9-95F54A6225D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28F63A31-54B0-4B83-A29A-9AB76E5EF2CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28F63A31-54B0-4B83-A29A-9AB76E5EF2CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28F63A31-54B0-4B83-A29A-9AB76E5EF2CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28F63A31-54B0-4B83-A29A-9AB76E5EF2CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
