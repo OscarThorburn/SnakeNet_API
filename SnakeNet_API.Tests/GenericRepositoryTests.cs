@@ -25,6 +25,14 @@ namespace SnakeNet_API.Tests
 		{
 			var result = await _repository.GetAsync();
 
+			Assert.Equal(3, result.Count());
+		}
+
+		[Fact]
+		public async Task GetAsync_WithQueryFilter_ReturnsAllFemale()
+		{
+			var result = await _repository.GetAsync(snake => snake.Sex == Models.Enums.Sex.Female);
+
 			Assert.Equal(2, result.Count());
 		}
 

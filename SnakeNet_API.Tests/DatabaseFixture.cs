@@ -41,6 +41,13 @@ namespace SnakeNet_API.Tests
 				Sex = Sex.Female
 			};
 
+			var snake3 = new Snake
+			{
+				Id = Guid.NewGuid().ToString(),
+				Name = "Bollman",
+				Sex = Sex.Female
+			};
+
 			var enclosure1 = new Enclosure
 			{
 				Id = Guid.NewGuid().ToString(),
@@ -192,7 +199,7 @@ namespace SnakeNet_API.Tests
 				Snake = snake2
 			};
 
-			Context.Snakes.AddRange(snake1, snake2);
+			Context.Snakes.AddRange(snake1, snake2, snake3);
 			Context.Enclosures.AddRange(enclosure1, enclosure2);
 			Context.EnclosureLights.AddRange(light1, light2);
 			Context.EnclosureReadings.AddRange(reading1, reading2);

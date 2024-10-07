@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SnakeNet_API.DAL.Interfaces;
 
 namespace SnakeNet_API.Controllers
 {
@@ -8,5 +9,15 @@ namespace SnakeNet_API.Controllers
 	[ApiController]
 	public class SnakeNetController : ControllerBase
 	{
-	}
+		private readonly IUnitOfWork _unitOfWork;
+		private readonly ILogger<SnakeNetController> _logger;
+
+        public SnakeNetController(IUnitOfWork unitOfWork, ILogger<SnakeNetController> logger)
+        {
+            _unitOfWork = unitOfWork;
+			_logger = logger;
+        }
+
+
+    }
 }

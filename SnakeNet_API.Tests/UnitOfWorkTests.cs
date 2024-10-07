@@ -1,10 +1,6 @@
-﻿using Xunit;
-using Moq;
-using Microsoft.EntityFrameworkCore;
-using System;
-using SnakeNet_API.DAL;
+﻿using SnakeNet_API.DAL;
 using SnakeNet_API.Models.Entities;
-using SnakeNet_API.DAL.Interfaces;
+using Xunit;
 
 namespace SnakeNet_API.Tests
 {
@@ -19,92 +15,41 @@ namespace SnakeNet_API.Tests
 			_unitOfWork = new UnitOfWork(_context);
 		}
 
-		[Fact]
-		public void UnitOfWork_LazyInitialization_RepositoriesAreNullBeforeAccess()
+		[Theory]
+		[InlineData("_enclosureRepository")]
+		[InlineData("_growthRecordRepository")]
+		[InlineData("_eliminationRepository")]
+		[InlineData("_feedingRecordRepository")]
+		[InlineData("_enclosureReadingRepository")]
+		[InlineData("_enclosureLightRepository")]
+		[InlineData("_enclosureSubstrateRepository")]
+		public void UnitOfWork_LazyInitialization_RepositoryIsNullBeforeAccess(string repositoryField)
 		{
-			Assert.Null(typeof(UnitOfWork).GetField("_enclosureRepository", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(_unitOfWork));
-			Assert.Null(typeof(UnitOfWork).GetField("_growthRecordRepository", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(_unitOfWork));
-			Assert.Null(typeof(UnitOfWork).GetField("_eliminationRepository", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(_unitOfWork));
-			Assert.Null(typeof(UnitOfWork).GetField("_feedingRecordRepository", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(_unitOfWork));
-			Assert.Null(typeof(UnitOfWork).GetField("_enclosureReadingRepository", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(_unitOfWork));
-			Assert.Null(typeof(UnitOfWork).GetField("_enclosureLightRepository", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(_unitOfWork));
-			Assert.Null(typeof(UnitOfWork).GetField("_enclosureSubstrateRepository", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(_unitOfWork));
+			var fieldValue = typeof(UnitOfWork)
+				.GetField(repositoryField, System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+				.GetValue(_unitOfWork);
+
+			Assert.Null(fieldValue);
 		}
 
-		[Fact]
-		public void SnakeRepository_ReturnsInstanceOfGenericRepository()
+		[Theory]
+		[InlineData("SnakeRepository", typeof(Snake))]
+		[InlineData("EnclosureRepository", typeof(Enclosure))]
+		[InlineData("GrowthRecordRepository", typeof(GrowthRecord))]
+		[InlineData("EliminationRepository", typeof(Elimination))]
+		[InlineData("FeedingRecordRepository", typeof(FeedingRecord))]
+		[InlineData("EnclosureReadingRepository", typeof(EnclosureReading))]
+		[InlineData("EnclosureLightRepository", typeof(EnclosureLight))]
+		[InlineData("EnclosureSubstrateRepository", typeof(EnclosureSubstrate))]
+		public void Repository_ReturnsInstanceOfGenericRepository(string repositoryName, Type expectedType)
 		{
-			var repository = _unitOfWork.SnakeRepository;
-
+			var repository = typeof(UnitOfWork).GetProperty(repositoryName)?.GetValue(_unitOfWork);
 			Assert.NotNull(repository);
-			Assert.IsType<GenericRepository<Snake>>(repository);
+			Assert.IsType(typeof(GenericRepository<>).MakeGenericType(expectedType), repository);
 		}
 
 		[Fact]
-		public void EnclosureRepository_ReturnsInstanceOfGenericRepository()
-		{
-			var repository = _unitOfWork.EnclosureRepository;
-
-			Assert.NotNull(repository);
-			Assert.IsType<GenericRepository<Enclosure>>(repository);
-		}
-
-		[Fact]
-		public void GrowthRecordRepository_ReturnsInstanceOfGenericRepository()
-		{
-			var repository = _unitOfWork.GrowthRecordRepository;
-
-			Assert.NotNull(repository);
-			Assert.IsType<GenericRepository<GrowthRecord>>(repository);
-		}
-
-		[Fact]
-		public void EliminationRepository_ReturnsInstanceOfGenericRepository()
-		{
-			var repository = _unitOfWork.EliminationRepository;
-
-			Assert.NotNull(repository);
-			Assert.IsType<GenericRepository<Elimination>>(repository);
-		}
-
-		[Fact]
-		public void FeedingRecordRepository_ReturnsInstanceOfGenericRepository()
-		{
-			var repository = _unitOfWork.FeedingRecordRepository;
-
-			Assert.NotNull(repository);
-			Assert.IsType<GenericRepository<FeedingRecord>>(repository);
-		}
-
-		[Fact]
-		public void EnclosureReadingRepository_ReturnsInstanceOfGenericRepository()
-		{
-			var repository = _unitOfWork.EnclosureReadingRepository;
-
-			Assert.NotNull(repository);
-			Assert.IsType<GenericRepository<EnclosureReading>>(repository);
-		}
-
-		[Fact]
-		public void EnclosureLightRepository_ReturnsInstanceOfGenericRepository()
-		{
-			var repository = _unitOfWork.EnclosureLightRepository;
-
-			Assert.NotNull(repository);
-			Assert.IsType<GenericRepository<EnclosureLight>>(repository);
-		}
-
-		[Fact]
-		public void EnclosureSubstrateRepository_ReturnsInstanceOfGenericRepository()
-		{
-			var repository = _unitOfWork.EnclosureSubstrateRepository;
-
-			Assert.NotNull(repository);
-			Assert.IsType<GenericRepository<EnclosureSubstrate>>(repository);
-		}
-
-		[Fact]
-		public async void SaveAsync_CallsSaveChangesAsyncOnContext()
+		public async Task SaveAsync_CallsSaveChangesAsyncOnContext()
 		{
 			await _unitOfWork.SnakeRepository.InsertAsync(new Snake { Id = "UnitOfWorkSave", Name = "Test1" });
 
