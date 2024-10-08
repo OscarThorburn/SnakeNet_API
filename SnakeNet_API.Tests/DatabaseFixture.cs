@@ -2,11 +2,6 @@
 using SnakeNet_API.DAL;
 using SnakeNet_API.Models.Entities;
 using SnakeNet_API.Models.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SnakeNet_API.Tests
 {
@@ -29,28 +24,28 @@ namespace SnakeNet_API.Tests
 		{
 			var snake1 = new Snake
 			{
-				Id = Guid.NewGuid().ToString(),
+				Id = "7e30e84a-67d3-491d-98a5-ee3759892baa",
 				Name = "Ragnar",
 				Sex = Sex.Male
 			};
 
 			var snake2 = new Snake
 			{
-				Id = Guid.NewGuid().ToString(),
+				Id = "97049c06-66bb-4c7e-989f-a4d212620eb9",
 				Name = "Stefan",
 				Sex = Sex.Female
 			};
 
 			var snake3 = new Snake
 			{
-				Id = Guid.NewGuid().ToString(),
+				Id = "757f7c0d-6844-4693-96d7-126a04bc0dce",
 				Name = "Bollman",
 				Sex = Sex.Female
 			};
 
 			var enclosure1 = new Enclosure
 			{
-				Id = Guid.NewGuid().ToString(),
+				Id = "208d16b6-1bb6-45be-940c-b99cec7acdd7",
 				Lenght = 100,
 				Height = 50,
 				Depth = 50,
@@ -59,7 +54,7 @@ namespace SnakeNet_API.Tests
 
 			var enclosure2 = new Enclosure
 			{
-				Id = Guid.NewGuid().ToString(),
+				Id = "7393f89b-0584-41a7-be7b-fe719c29bd34",
 				Lenght = 120,
 				Height = 60,
 				Depth = 60,
@@ -71,7 +66,7 @@ namespace SnakeNet_API.Tests
 
 			var light1 = new EnclosureLight
 			{
-				Id = Guid.NewGuid().ToString(),
+				Id = "1f508491-7592-41ac-8e4f-e3a9b583f147",
 				Name = "UVB Light",
 				LightingType = LightingType.UVB,
 				Manufacturer = "ReptileCo",
@@ -84,7 +79,7 @@ namespace SnakeNet_API.Tests
 
 			var light2 = new EnclosureLight
 			{
-				Id = Guid.NewGuid().ToString(),
+				Id = "3503fe67-3aac-43a0-a1d1-6383e8880d9a",
 				Name = "Heat Lamp",
 				LightingType = LightingType.Halogen,
 				Manufacturer = "ReptileLight",
@@ -97,7 +92,7 @@ namespace SnakeNet_API.Tests
 
 			var reading1 = new EnclosureReading
 			{
-				Id = Guid.NewGuid().ToString(),
+				Id = "08efe310-f318-468b-853c-9daa4d67bff0",
 				Temperature = 30,
 				Humidity = 60,
 				Date = DateTime.Now,
@@ -108,7 +103,7 @@ namespace SnakeNet_API.Tests
 
 			var reading2 = new EnclosureReading
 			{
-				Id = Guid.NewGuid().ToString(),
+				Id = "26c50a5d-cfc9-4568-a7a4-522791c6e853",
 				Temperature = 32,
 				Humidity = 65,
 				Date = DateTime.Now,
@@ -119,7 +114,7 @@ namespace SnakeNet_API.Tests
 
 			var substrate1 = new EnclosureSubstrate
 			{
-				Id = Guid.NewGuid().ToString(),
+				Id = "5c8227d5-fef0-49a4-8227-db34d8bbba60",
 				Name = "Cypress Mulch",
 				SubstrateType = SubstrateType.CypressMulch,
 				Manufacturer = "SubstrateCorp",
@@ -131,7 +126,7 @@ namespace SnakeNet_API.Tests
 
 			var substrate2 = new EnclosureSubstrate
 			{
-				Id = Guid.NewGuid().ToString(),
+				Id = "ea61d1d5-121f-4de5-a3c5-5d4ddde41989",
 				Name = "Aspen Shavings",
 				SubstrateType = SubstrateType.Cocofiber,
 				Manufacturer = "PetWorld",
@@ -143,7 +138,7 @@ namespace SnakeNet_API.Tests
 
 			var feeding1 = new FeedingRecord
 			{
-				Id = Guid.NewGuid().ToString(),
+				Id = "c92ff237-bbc3-4f12-918c-5f1ef66b4a82",
 				FeederWeight = 50,
 				Feeder = Feeder.Mouse,
 				Date = DateTime.Now.AddDays(-5),
@@ -153,7 +148,7 @@ namespace SnakeNet_API.Tests
 
 			var feeding2 = new FeedingRecord
 			{
-				Id = Guid.NewGuid().ToString(),
+				Id = "20730b18-0ce1-445d-a05b-c611b39a8932",
 				FeederWeight = 60,
 				Feeder = Feeder.Rat,
 				Date = DateTime.Now.AddDays(-7),
@@ -163,7 +158,7 @@ namespace SnakeNet_API.Tests
 
 			var growth1 = new GrowthRecord
 			{
-				Id = Guid.NewGuid().ToString(),
+				Id = "b35bda98-5802-4a4d-97c5-1e5ed83453bf",
 				Lenght = 100,
 				Weight = 500,
 				Date = DateTime.Now.AddMonths(-1),
@@ -172,7 +167,7 @@ namespace SnakeNet_API.Tests
 
 			var growth2 = new GrowthRecord
 			{
-				Id = Guid.NewGuid().ToString(),
+				Id = "47aa5159-ea9d-4ddf-b7b3-9ff23a8baf04",
 				Lenght = 150,
 				Weight = 700,
 				Date = DateTime.Now.AddMonths(-2),
@@ -181,7 +176,7 @@ namespace SnakeNet_API.Tests
 
 			var elimination1 = new Elimination
 			{
-				Id = Guid.NewGuid().ToString(),
+				Id = "25683407-4070-47e9-a759-ef170b4ab6f5",
 				Date = DateTime.Now.AddDays(-3),
 				Healthy = true,
 				Type = EliminationType.Poop,
@@ -191,7 +186,7 @@ namespace SnakeNet_API.Tests
 
 			var elimination2 = new Elimination
 			{
-				Id = Guid.NewGuid().ToString(),
+				Id = "9e4ebc9b-0e94-402b-8271-c11c4f8e3f03",
 				Date = DateTime.Now.AddDays(-2),
 				Healthy = false,
 				Type = EliminationType.Shed,
